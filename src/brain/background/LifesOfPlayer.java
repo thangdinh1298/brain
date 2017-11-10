@@ -1,9 +1,6 @@
 package brain.background;
 
-import bases.GameObject;
-import bases.ImageRenderer;
-import bases.Renderer;
-import bases.SceneManager;
+import bases.*;
 import brain.scenes.GameOverScene;
 import brain.scenes.GamePlayScene;
 
@@ -32,6 +29,7 @@ public class LifesOfPlayer extends GameObject {
     }
 
     public static void gameOver() {
+        AudioUtils.play(AudioUtils.loadSound("audios/sfx_die.wav"));
         SceneManager.changeScene(new GameOverScene());
     }
 }

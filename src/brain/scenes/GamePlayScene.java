@@ -43,7 +43,7 @@ public class GamePlayScene implements Scene {
 
         GameObject.add(new LifesOfPlayer());
 
-//        GameObject.add(new TrapSpawner());
+
     }
 
     @Override

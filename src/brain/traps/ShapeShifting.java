@@ -11,6 +11,6 @@ public class ShapeShifting extends GameObject implements Traps {
     public ShapeShifting(){
         this.position.set(randomX[random], ThreadLocalRandom.current().nextInt(100,400));
         this.hitBox.position.set(this.position);
-        this.renderer = new ImageRenderer("assets/images/trap/23201931_692271330979364_1884482132_n.png");
+        this.renderer = new ImageRenderer("assets/shapeChangeAnimation/Diamond.png");
     }
 }

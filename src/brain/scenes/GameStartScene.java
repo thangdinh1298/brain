@@ -1,9 +1,6 @@
 package brain.scenes;
 
-import bases.GameObject;
-import bases.ImageRenderer;
-import bases.Scene;
-import bases.SceneManager;
+import bases.*;
 import brain.input.InputManager;
 
 public class GameStartScene extends GameObject implements Scene {
@@ -12,6 +9,8 @@ public class GameStartScene extends GameObject implements Scene {
     public void run() {
         InputManager inputManager = InputManager.instance;
         if(inputManager.spacePressed){
+
+            AudioUtils.play(AudioUtils.loadSound("audios/sfx_swooshing.wav"));
             SceneManager.changeScene(new GamePlayScene());
         }
     }

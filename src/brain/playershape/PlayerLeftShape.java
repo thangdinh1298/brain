@@ -54,13 +54,13 @@ public class PlayerLeftShape extends GameObject implements PhysicsBody {
         InputManager inputManager = InputManager.instance;
         if(inputManager.fPressed){
             AudioUtils.play(AudioUtils.loadSound("audios/Sequence 01.wav"));
-            count ++;
             if(count == listShape.size() - 1){
                 count = 0;
                 changeObject(count);
                 currentType = count;
                 inputManager.fPressed = false;
             }
+
             else if(count != listShape.size() - 1 ){
                 count++;
                 changeObject(count);
@@ -68,20 +68,6 @@ public class PlayerLeftShape extends GameObject implements PhysicsBody {
                 inputManager.fPressed = false;
 
             }
-//            if ( count == 1){
-//                count ++;
-//                this.renderer = new Animation(
-//                        Utils.loadImage("assets/shapeChangeAnimation/circle.png"),
-//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy1.png"),
-//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy2.png"),
-//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy3.png"),
-//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy4.png")
-//
-//                );
-//
-//                changeObject(count);
-//                inputManager.fPressed = false;
-//            }
         }
 
     }

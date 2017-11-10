@@ -1,8 +1,10 @@
 package brain.FallingObjects.shapes;
 
 
+import bases.Animation;
 import bases.GameObject;
 import bases.ImageRenderer;
+import bases.Utils;
 import brain.FallingObjects.FallingObjects;
 import brain.background.Score;
 import brain.playershape.PlayerLeftShape;
@@ -14,7 +16,15 @@ public class Triangle extends FallingObjects {
 
     public Triangle(){
         super();
-        this.renderer = new ImageRenderer("assets/shape/Triangle.png");
+//        this.renderer = new ImageRenderer("assets/shape/Triangle.png");
+        this.renderer = new Animation(
+                Utils.loadImage("assets/shape/Triangle.png"),
+                Utils.loadImage("assets/shape/Triangle1.png"),
+                Utils.loadImage("assets/shape/Triangle2.png"),
+                Utils.loadImage("assets/shape/Triangle3.png"),
+                Utils.loadImage("assets/shape/Triangle4.png"),
+                Utils.loadImage("assets/shape/Triangle5.png")
+        );
     }
 
     @Override

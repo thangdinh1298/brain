@@ -142,4 +142,6 @@ public class GameObject {
         }
     }
 
+    public void setRenderer(Animation animation) {
+    }
 }

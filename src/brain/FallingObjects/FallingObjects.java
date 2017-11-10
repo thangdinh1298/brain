@@ -1,6 +1,7 @@
 package brain.FallingObjects;
 
 
+import bases.AudioUtils;
 import bases.GameObject;
 import bases.physics.BoxCollider;
 import brain.FallingObjects.shapes.Circle;
@@ -55,15 +56,14 @@ public class FallingObjects extends GameObject {
     public void run(){
         this.position.addUp(0,Speed);
         this.hitBox.position.set(this.position);
-//        checkLife();
+        checkLife();
     }
 
     public void checkLife() {
         if (this != null) {
             if (this.position.y > 600 && this.isActive) {
+                AudioUtils.play(AudioUtils.loadSound("audios/sfx_hit.wav"));
                 LifesOfPlayer.minusLife();
-                System.out.println(LifesOfPlayer.life);
-//                LifesOfPlayer.isActive = false;
                 GameObject.remove(this);
             }
         }

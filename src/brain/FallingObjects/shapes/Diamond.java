@@ -1,8 +1,10 @@
 package brain.FallingObjects.shapes;
 
 
+import bases.Animation;
 import bases.GameObject;
 import bases.ImageRenderer;
+import bases.Utils;
 import brain.FallingObjects.FallingObjects;
 import brain.background.Score;
 import brain.playershape.PlayerLeftShape;
@@ -14,7 +16,15 @@ public class Diamond extends FallingObjects {
     public final int type = 3;
     public Diamond(){
         super();
-        this.renderer = new ImageRenderer("assets/shape/Diamond.png");
+//        this.renderer = new ImageRenderer("assets/shape/Diamond1.png");
+        this.renderer = new Animation(
+                Utils.loadImage("assets/shape/Diamond1.png"),
+                Utils.loadImage("assets/shape/Diamond2.png"),
+                Utils.loadImage("assets/shape/Diamond3.png"),
+                Utils.loadImage("assets/shape/Diamond4.png"),
+                Utils.loadImage("assets/shape/Diamond5.png"),
+                Utils.loadImage("assets/shape/Diamond6.png")
+        );
     }
 
     @Override

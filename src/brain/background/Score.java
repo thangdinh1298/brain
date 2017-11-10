@@ -1,5 +1,6 @@
 package brain.background;
 
+import bases.AudioUtils;
 import bases.GameObject;
 import com.sun.javafx.text.TextLine;
 
@@ -14,9 +15,9 @@ public class Score extends GameObject {
 
     @Override
     public void render(Graphics g) {
-//        g.setColor(Color.WHITE);
-//        g.setFont(new Font("Moonshiner",Font.BOLD,30));
-//        g.drawString("Score : " +Score.score,290,40);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Moonshiner",Font.BOLD,30));
+        g.drawString("Score : " +Score.score,290,40);
     }
 
     public Score(){
@@ -24,6 +25,7 @@ public class Score extends GameObject {
         this.position.set(250,50);
     }
     public static void addScore(int num){
+        AudioUtils.play(AudioUtils.loadSound("audios/sfx_point.wav"));
         score+=num;
     }
 }
