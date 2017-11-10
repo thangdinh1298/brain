@@ -1,7 +1,9 @@
 package brain.FallingObjects.shapes;
 
+import bases.Animation;
 import bases.GameObject;
 import bases.ImageRenderer;
+import bases.Utils;
 import brain.FallingObjects.FallingObjects;
 import brain.background.Score;
 import brain.playershape.PlayerLeftShape;
@@ -15,7 +17,16 @@ public class Circle extends FallingObjects {
     public Circle(){
         super();
 
-        this.renderer = new ImageRenderer("assets/shape/circle.png");
+        this.renderer = new Animation(
+                Utils.loadImage("assets/shape/circle.png"),
+                Utils.loadImage("assets/shape/circle1.png"),
+                Utils.loadImage("assets/shape/circle2.png"),
+                Utils.loadImage("assets/shape/circle3.png"),
+                Utils.loadImage("assets/shape/circle4.png"),
+                Utils.loadImage("assets/shape/circle5.png"),
+                Utils.loadImage("assets/shape/circle6.png")
+
+        );
     }
 
     @Override

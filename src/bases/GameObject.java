@@ -1,5 +1,6 @@
 package bases;
 
+import bases.actions.Action;
 import brain.FallingObjects.FallingObjects;
 import brain.FallingObjects.shapes.Circle;
 import brain.FallingObjects.shapes.Diamond;
@@ -8,6 +9,7 @@ import brain.FallingObjects.shapes.Triangle;
 import brain.traps.Traps;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -21,6 +23,9 @@ public class GameObject {
 
     public boolean isActive;
 
+    public ArrayList<Action> actions;
+    public ArrayList<Action> newActions;
+    
     static Vector<GameObject> gameObjects = new Vector<>();
 
     static Vector<GameObject> newGameObjects = new Vector<>();
@@ -30,6 +35,8 @@ public class GameObject {
     public GameObject() {
         position = new Vector2D();
         isActive = true;
+        actions = new ArrayList<>();
+        newActions = new ArrayList<>();
     }
 
     public static void add(GameObject gameObject) {
@@ -46,11 +53,39 @@ public class GameObject {
 
     }
 
-    public static void runAll() {
-        for (GameObject gameObject : gameObjects) {
-            if (gameObject.isActive) {
+    public void runActions(){
+        // run for all actions and if run return true then remove it
+        this.actions.removeIf(action -> action.run(this));
+        this.actions.addAll(newActions);
+        newActions.clear();
+    }
+
+    public void addAction(Action action){
+        newActions.add(action);
+    }
+
+    public void trapDetector() {
+        if (this instanceof FallingObjects) {
+            for (GameObject gameObject : gameObjects) {
+                if (gameObject instanceof Traps && gameObject.isActive) {
+                    if (((FallingObjects) this).hitBox.collideWith(((Traps) gameObject).hitBox)) {
+                        gameObject.isActive = false;
+                        ((FallingObjects) this).isActive = false;
+                        FallingObjects newobj = FallingObjects.changeShape(typeCheck(this));
+                        newobj.position.set(this.position);
+                        GameObject.add(newobj);
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void runAll(){
+        for(GameObject gameObject : gameObjects){
+            if(gameObject.isActive){
                 gameObject.trapDetector();
                 gameObject.run();
+                gameObject.runActions();
             }
         }
         gameObjects.addAll(newGameObjects);
@@ -71,20 +106,9 @@ public class GameObject {
         }
     }
 
-    public void trapDetector() {
-        if (this instanceof FallingObjects) {
-            for (GameObject gameObject : gameObjects) {
-                if (gameObject instanceof Traps && gameObject.isActive) {
-                    if (((FallingObjects) this).hitBox.collideWith(((Traps) gameObject).hitBox)) {
-                        gameObject.isActive = false;
-                        ((FallingObjects) this).isActive = false;
-                        FallingObjects newobj = FallingObjects.changeShape(typeCheck(this));
-                        newobj.position.set(this.position);
-                        GameObject.add(newobj);
-                    }
-                }
-            }
-        }
+    public static void clearAll() {
+        gameObjects.clear();
+        newGameObjects.clear();
     }
     public int typeCheck(GameObject gameObject){
         if(gameObject instanceof Circle){

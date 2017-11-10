@@ -18,7 +18,7 @@ public class Animation implements Renderer {
     //... dùng để: mày cứ nhét ảnh vào đấy, tao sẽ gom tất cả ảnh thành 1 mảng
     public Animation(boolean repeat, BufferedImage... images){
         this.images = images;
-        this.frameCounter = new FrameCounter(7);
+        this.frameCounter = new FrameCounter(5);
         this.repeat = repeat;
     }
 

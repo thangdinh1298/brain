@@ -1,5 +1,6 @@
 package brain.playershape;
 
+import bases.AudioUtils;
 import bases.GameObject;
 import bases.ImageRenderer;
 import bases.Renderer;
@@ -57,6 +58,7 @@ public class PlayerRightShape extends GameObject implements PhysicsBody {
         InputManager inputManager = InputManager.instance;
 
         if(inputManager.jPressed){
+            AudioUtils.play(AudioUtils.loadSound("audios/Sequence 01.wav"));
             if(count == listShape.size() - 1){
                 count = 0;
                 changeObject(count);

@@ -1,8 +1,6 @@
 package brain.playershape;
 
-import bases.GameObject;
-import bases.ImageRenderer;
-import bases.Renderer;
+import bases.*;
 import bases.physics.BoxCollider;
 import bases.physics.PhysicsBody;
 import brain.FallingObjects.FallingObjects;
@@ -12,6 +10,7 @@ import brain.FallingObjects.shapes.Square;
 import brain.FallingObjects.shapes.Triangle;
 import brain.input.InputManager;
 
+import javax.sound.sampled.Clip;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -53,8 +52,9 @@ public class PlayerLeftShape extends GameObject implements PhysicsBody {
 
     private void changeShape() {
         InputManager inputManager = InputManager.instance;
-
         if(inputManager.fPressed){
+            AudioUtils.play(AudioUtils.loadSound("audios/Sequence 01.wav"));
+            count ++;
             if(count == listShape.size() - 1){
                 count = 0;
                 changeObject(count);
@@ -68,6 +68,20 @@ public class PlayerLeftShape extends GameObject implements PhysicsBody {
                 inputManager.fPressed = false;
 
             }
+//            if ( count == 1){
+//                count ++;
+//                this.renderer = new Animation(
+//                        Utils.loadImage("assets/shapeChangeAnimation/circle.png"),
+//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy1.png"),
+//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy2.png"),
+//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy3.png"),
+//                        Utils.loadImage("assets/shapeChangeAnimation/circle copy4.png")
+//
+//                );
+//
+//                changeObject(count);
+//                inputManager.fPressed = false;
+//            }
         }
 
     }
@@ -78,6 +92,7 @@ public class PlayerLeftShape extends GameObject implements PhysicsBody {
         currentObject = listShape.get(num);
         this.renderer = currentObject.renderer;
     }
+
 
 
 

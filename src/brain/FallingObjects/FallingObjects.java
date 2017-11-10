@@ -11,14 +11,14 @@ import brain.FallingObjects.shapes.Triangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
-
+import brain.background.LifesOfPlayer;
 
 public class FallingObjects extends GameObject {
     public BoxCollider hitBox;
 
     private static ArrayList<Integer> index = new ArrayList<>(Arrays.asList(0,1,2,3));
 
-    public static int Speed = 5;
+    public static int Speed = 3;
 
     public static final int CIRCLE = 0;
     public static final int SQUARE = 1;
@@ -55,6 +55,21 @@ public class FallingObjects extends GameObject {
     public void run(){
         this.position.addUp(0,Speed);
         this.hitBox.position.set(this.position);
+//        checkLife();
+    }
+
+    public void checkLife() {
+        if (this != null) {
+            if (this.position.y > 600 && this.isActive) {
+                LifesOfPlayer.minusLife();
+                System.out.println(LifesOfPlayer.life);
+//                LifesOfPlayer.isActive = false;
+                GameObject.remove(this);
+            }
+        }
+        if(LifesOfPlayer.life <= 0){
+            LifesOfPlayer.gameOver();
+        }
     }
 
 }

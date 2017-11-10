@@ -13,7 +13,7 @@ public class Spawner extends GameObject {
     Random rdm = new Random();
     int index;
 
-    FrameCounter frameCounter = new FrameCounter(120);
+    FrameCounter frameCounter = new FrameCounter(250);
 
     public Spawner(Vector2D position){
         this.position = position;
