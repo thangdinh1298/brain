@@ -7,9 +7,9 @@ import brain.scenes.GamePlayScene;
 import java.awt.*;
 
 public class LifesOfPlayer extends GameObject {
-    public static int life =993;
+    public static int life =5;
     int lifeX = 20;
-    int lifeY = 20;
+    int lifeY = 10;
     ImageRenderer lifesOfPlayer;
 
     public LifesOfPlayer() {
