@@ -71,6 +71,8 @@ public class GameObject {
                     if (((FallingObjects) this).hitBox.collideWith(((Traps) gameObject).hitBox)) {
                         gameObject.isActive = false;
                         ((FallingObjects) this).isActive = false;
+                        System.out.println("object pos: " + ((FallingObjects) this).hitBox.position);
+                        System.out.println("trap pos: " + ((Traps) gameObject).hitBox.position);
                         FallingObjects newobj = FallingObjects.changeShape(typeCheck(this));
                         newobj.position.set(this.position);
                         GameObject.add(newobj);
@@ -135,6 +137,7 @@ public class GameObject {
         }
         try {
             T newGameObject=  cls.newInstance();//new
+            newGameObject.isActive = true;
             return newGameObject;
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
